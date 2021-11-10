@@ -14,7 +14,6 @@ import Login from "./pages/Login/Login/Login";
 import Register from "./pages/Login/Register/Register";
 import AuthProvider from "./Context/AuthProvider";
 import PrivateRoute from "./pages/Login/PrivateRoute/PrivateRoute";
-import useAuth from "./Context/useAuth";
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -28,7 +27,7 @@ function App() {
       }),
     [prefersDarkMode]
   );
-  // const { user } = useAuth();
+
   return (
     <AuthProvider>
       <ThemeProvider theme={theme}>
@@ -40,12 +39,14 @@ function App() {
                 <PrivateRoute path="/In">
                   <Sidebar></Sidebar>
                 </PrivateRoute>
+
                 <Route path="/Login">
                   <Login></Login>
                 </Route>
                 <Route path="/Register">
                   <Register></Register>
                 </Route>
+
                 <Route exact path="/">
                   <Redirect to="/In" />
                 </Route>

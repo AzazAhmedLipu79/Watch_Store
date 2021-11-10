@@ -193,7 +193,12 @@ const Sidebar = () => {
             style={{ marginTop: "30%" }}
             // sx={{ backgroundColor: "#B33A3A", padding: "5px" }}
           >
-            <Button onClick={logOut} variant="contained" color="error">
+            <Button
+              className="rounded-pill w-100 shadow-lg "
+              onClick={logOut}
+              variant="contained"
+              color="error"
+            >
               <ListItem sx={{ px: "auto" }}>
                 <ListItemIcon>
                   <LogoutIcon />
@@ -208,7 +213,7 @@ const Sidebar = () => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <h2>BoomBlater </h2>
+
         <Switch>
           <Route exact path={path}></Route>
           <Route path={`${path}/Home`}>
