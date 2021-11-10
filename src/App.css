@@ -1,3 +1,11 @@
+::selection {
+  margin-top: -1.15em;
+  font-family: "Pirata One", cursive;
+  font-size: 3rem;
+  color: #f7971e;
+  background-color: whitesmoke;
+}
+
 .App {
   text-align: center;
 }
