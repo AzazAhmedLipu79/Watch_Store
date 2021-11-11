@@ -1,11 +1,15 @@
 import * as React from "react";
-import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import { Switch, Route, Link, useRouteMatch, Redirect } from "react-router-dom";
 
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
+import ExploreIcon from "@mui/icons-material/Explore";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import MuiAppBar from "@mui/material/AppBar";
+import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import Toolbar from "@mui/material/Toolbar";
+import MapsHomeWorkRoundedIcon from "@mui/icons-material/MapsHomeWorkRounded";
 import LogoutIcon from "@mui/icons-material/Logout";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -24,6 +28,10 @@ import Home from "../../../Home/Home/Home";
 import Product from "../../../AllProductPage/Product/Product";
 import useAuth from "../../../../Context/useAuth";
 import Button from "@mui/material/Button";
+import AddProduct from "../../../Admin/AddProduct/AddProduct/AddProduct";
+import { Avatar, Chip } from "@mui/material";
+import OrderCheckOut from "../../../UserDashBoard/OrderCheckOut/OrderCheckOut";
+import MyOrders from "../../../UserDashBoard/MyOrders/MyOrders";
 
 const drawerWidth = 240;
 
@@ -130,7 +138,12 @@ const Sidebar = () => {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <p>Niche Shop</p>
+          <img
+            src="https://mui.com/static/branding/product-core-dark.svg"
+            alt="Logo"
+          />
+          <span>Niche Shop</span>
+
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <>
@@ -138,10 +151,6 @@ const Sidebar = () => {
               </>
             ) : (
               <>
-                <img
-                  src="https://mui.com/static/branding/product-core-dark.svg"
-                  alt="Logo"
-                />
                 <ChevronLeftIcon />
               </>
             )}
@@ -156,7 +165,7 @@ const Sidebar = () => {
           <List>
             <ListItem>
               <ListItemIcon>
-                <InboxIcon />
+                <MapsHomeWorkRoundedIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
@@ -169,7 +178,7 @@ const Sidebar = () => {
           <List>
             <ListItem>
               <ListItemIcon>
-                <InboxIcon />
+                <ExploreIcon />
               </ListItemIcon>
               <ListItemText primary="Products" />
             </ListItem>
@@ -177,6 +186,19 @@ const Sidebar = () => {
         </Link>
 
         <Divider />
+        <Link
+          to={`${url}/MyOrders`}
+          style={{ paddingLeft: "auto", textDecoration: "none" }}
+        >
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                <PlaylistAddCheckIcon />
+              </ListItemIcon>
+              <ListItemText primary="My Orders" />
+            </ListItem>
+          </List>
+        </Link>
         <List>
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
             <ListItem button key={text}>
@@ -187,7 +209,28 @@ const Sidebar = () => {
             </ListItem>
           ))}
         </List>
+        <Divider sx={{ mb: "3px" }} />
+        <Chip
+          sx={{ mt: "2px" }}
+          avatar={<Avatar>A</Avatar>}
+          label="Admin Tools"
+        />
+
+        <Link
+          to={`${url}/AddProduct`}
+          style={{ paddingLeft: "auto", textDecoration: "none" }}
+        >
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                <AddCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Add Product" />
+            </ListItem>
+          </List>
+        </Link>
         <Divider />
+        {/* conditional rendering */}
         {user.email ? (
           <List
             style={{ marginTop: "30%" }}
@@ -215,12 +258,25 @@ const Sidebar = () => {
         <DrawerHeader />
 
         <Switch>
-          <Route exact path={path}></Route>
+          <Route exact path={path}>
+            <Redirect to={`${path}/Home`} />
+          </Route>
           <Route path={`${path}/Home`}>
             <Home></Home>
           </Route>
           <Route path={`${path}/Products`}>
             <Product></Product>
+          </Route>
+
+          <Route path={`${path}/MyOrders`}>
+            <MyOrders></MyOrders>
+          </Route>
+          <Route path={`${path}/OrderCheckOut/:ProductId`}>
+            <OrderCheckOut></OrderCheckOut>
+          </Route>
+
+          <Route path={`${path}/AddProduct`}>
+            <AddProduct></AddProduct>
           </Route>
         </Switch>
       </Box>
