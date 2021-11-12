@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../../Context/useAuth";
 import {
+  Alert,
   Button,
   Card,
   CardActions,
@@ -11,6 +12,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import TextField from "@mui/material/TextField";
+import swal from "sweetalert";
 
 const MyOrders = () => {
   const { user } = useAuth();
@@ -22,29 +24,51 @@ const MyOrders = () => {
     fetch(`http://localhost:5000/myOrders/${email}`)
       .then((res) => res.json())
       .then((data) => setMyOrder(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [control]);
 
   const CancelOrder = (id) => {
-    fetch(`http://localhost:5000/deleteOrder/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount) {
-          setControl(!control);
-        }
-      });
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:5000/deleteOrder/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              setControl(!control);
+            }
+          });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
   };
   return (
     <>
       <Container>
-        <Typography variant="h4" gutterBottom component="div">
+        <Typography
+          className="fw-bold"
+          variant="h4"
+          gutterBottom
+          component="div"
+        >
           My Order:
         </Typography>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
+            {myOrder.length === 0 ? (
+              <Alert severity="error">You have no Product — Ordered!</Alert>
+            ) : null}
             {myOrder.map((pd) => (
               <>
+                {console.log(pd)}
                 <Grid key={pd._id} item xs={12} md={4} sm={6}>
                   {" "}
                   <Card
@@ -74,6 +98,7 @@ const MyOrders = () => {
                           CancelOrder(pd?._id);
                         }}
                         variant="outlined"
+                        color="error"
                         size="medium"
                       >
                         Cancel Order
@@ -89,7 +114,7 @@ const MyOrders = () => {
                         {pd.description}
                       </Typography>
                       <Typography variant="h6" gutterBottom component="div">
-                        ${pd.price}
+                        ${pd?.price}
                       </Typography>
 
                       <TextField

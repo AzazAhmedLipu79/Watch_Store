@@ -24,6 +24,7 @@ const OrderCheckOut = () => {
     fetch(`http://localhost:5000/SingleProduct/${ProductId}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const {
@@ -85,7 +86,7 @@ const OrderCheckOut = () => {
                   <br />
 
                   <input
-                    {...register("description", { required: true })}
+                    {...register("description")}
                     readOnly
                     defaultValue={product?.description}
                     className="p-2 m-2 w-100"
@@ -128,7 +129,10 @@ const OrderCheckOut = () => {
       <div className="w-25 mx-auto my-5 bg-dark">
         <Alert severity="warning">
           <AlertTitle>Warning</AlertTitle>
-          If Order Successfully Done — <strong>You will be Redirected!</strong> further You won't see any action
+          If Order Successfully Done — <strong>
+            You will be Redirected!
+          </strong>{" "}
+          further You won't see any action
         </Alert>
       </div>
     </>

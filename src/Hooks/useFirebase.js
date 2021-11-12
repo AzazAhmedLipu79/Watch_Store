@@ -15,6 +15,13 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [authError, setAuthError] = useState("");
+  const [admin, setAdmin] = useState(false);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.admin));
+  }, [user.email]);
 
   const auth = getAuth();
   const registerUser = (email, password) => {
@@ -23,7 +30,11 @@ const useFirebase = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        // saveUser
+
         setAuthError("");
+
+        SaveUserInfo(email);
         // ...
       })
       .catch((error) => {
@@ -75,12 +86,23 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoading(false));
   };
+
+  const SaveUserInfo = (email) => {
+    fetch("http://localhost:5000/addUserInfo", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email }),
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
+  };
   return {
     user,
     authError,
     registerUser,
     isLoading,
     logOut,
+    admin,
     LoginUser,
   };
 };
