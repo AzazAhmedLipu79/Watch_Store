@@ -36,6 +36,7 @@ const OrderCheckOut = () => {
   const onSubmit = (data) => {
     data.OrderDate = new Date().toLocaleDateString();
     data.OrderTime = new Date().toLocaleTimeString();
+    data.status = "Pending";
     fetch("http://localhost:5000/ConfirmOrder", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -45,6 +46,7 @@ const OrderCheckOut = () => {
       window.location.replace("/In/MyOrders");
     });
   };
+  document.title = "Confirm Your Order ~ Rolex Shop";
   return (
     <>
       <Container>

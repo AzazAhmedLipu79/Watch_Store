@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import swal from "sweetalert";
 
 const AddProduct = () => {
+  document.title = "Admin : Add Product ~ Rolex Shop";
   const {
     register,
     handleSubmit,

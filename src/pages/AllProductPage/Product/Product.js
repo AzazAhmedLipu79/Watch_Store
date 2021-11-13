@@ -17,7 +17,7 @@ const Product = () => {
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   }, []);
-
+  document.title = "Explore ~ Rolex Shop";
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>

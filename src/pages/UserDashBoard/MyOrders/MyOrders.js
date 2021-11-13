@@ -6,6 +6,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  Chip,
   Container,
   Grid,
   Typography,
@@ -26,6 +27,8 @@ const MyOrders = () => {
       .then((data) => setMyOrder(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [control]);
+
+  document.title = "My Order ~ Rolex Shop";
 
   const CancelOrder = (id) => {
     swal({
@@ -116,6 +119,12 @@ const MyOrders = () => {
                       <Typography variant="h6" gutterBottom component="div">
                         ${pd?.price}
                       </Typography>
+
+                      <Chip
+                        label={pd.status}
+                        color="success"
+                        variant="outlined"
+                      />
 
                       <TextField
                         style={{ marginTop: "10px" }}

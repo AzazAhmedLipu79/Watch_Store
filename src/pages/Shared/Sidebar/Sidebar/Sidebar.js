@@ -157,9 +157,22 @@ const Sidebar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Nache App
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+            Rolex Shop
           </Typography>
+          {/* conditional rendering */}
+          {user.email ? (
+            <List
+
+            // sx={{ backgroundColor: "#B33A3A", padding: "5px" }}
+            >
+              <Button onClick={handleLogOut} variant="outlined" color="error">
+                <LogoutIcon />
+              </Button>
+            </List>
+          ) : (
+            ""
+          )}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -168,7 +181,7 @@ const Sidebar = () => {
             src="https://mui.com/static/branding/product-core-dark.svg"
             alt="Logo"
           />
-          <span>Niche Shop</span>
+          <span>Rolex Shop</span>
 
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
@@ -342,24 +355,6 @@ const Sidebar = () => {
             </Link>
             <Divider />
           </Box>
-        )}
-        {/* conditional rendering */}
-        {user.email ? (
-          <List
-
-          // sx={{ backgroundColor: "#B33A3A", padding: "5px" }}
-          >
-            <Button onClick={handleLogOut} variant="outlined" color="secondary">
-              <ListItem sx={{ px: "auto" }}>
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <ListItemText primary="Logout" />
-              </ListItem>
-            </Button>
-          </List>
-        ) : (
-          ""
         )}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

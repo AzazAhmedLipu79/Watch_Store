@@ -24,12 +24,13 @@ const Review = () => {
     reset();
     swal("SuccessFul!", "Review  Added !", "success");
   };
+  document.title = "Review Our Webapplication ~ Rolex Shop";
   return (
     <Container>
       <h2 className="fw-bold text-secondary">Review Our Site !</h2>
       <form className="container p-5 " onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
-       
+
         <br />
         <input
           className="px-5 mb-3"

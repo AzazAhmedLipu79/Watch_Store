@@ -44,6 +44,7 @@ const MakeAdmin = () => {
 
     e.preventDefault();
   };
+  document.title = "Make Admin ~ Rolex Shop";
   return (
     <div
       className="container-fluid p-0"

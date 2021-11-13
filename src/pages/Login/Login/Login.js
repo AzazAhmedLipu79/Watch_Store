@@ -30,6 +30,7 @@ const Login = () => {
     // });
     LoginUser(data.get("email"), data.get("password"), location, history);
   };
+  document.title = "Login ~ Rolex Shop";
   return (
     <>
       {isLoading && (

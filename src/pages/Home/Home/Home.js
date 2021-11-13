@@ -6,6 +6,7 @@ import HomeReviews from "../HomeReviews/HomeReviews";
 import About from "../About/About";
 
 const Home = () => {
+  document.title = "Home ~ Rolex Shop";
   return (
     <div>
       <HeroHome></HeroHome>

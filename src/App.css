@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 ::selection {
   margin-top: -1.15em;
   font-family: "Pirata One", cursive;
@@ -7,7 +9,9 @@
 }
 
 .App {
+  font-family: "Poppins", sans-serif;
   text-align: center;
+  margin: 0 auto;
 }
 
 .App-logo {

@@ -26,6 +26,7 @@ const Register = () => {
     // });
     registerUser(data.get("email"), data.get("password"));
   };
+  document.title = "Make A Account ~ Rolex Shop";
   return (
     <>
       {isLoading && (
