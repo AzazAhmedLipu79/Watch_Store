@@ -15,7 +15,7 @@ const ProductsManage = () => {
 
   const [control, setControl] = React.useState(false);
   React.useEffect(() => {
-    fetch("http://localhost:5000/allProducts")
+    fetch("https://fathomless-depths-15420.herokuapp.com/allProducts")
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [control]);
@@ -29,9 +29,12 @@ const ProductsManage = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/deleteManageProduct/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://fathomless-depths-15420.herokuapp.com/deleteManageProduct/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {

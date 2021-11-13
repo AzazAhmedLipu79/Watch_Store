@@ -14,7 +14,7 @@ import { Container } from "@mui/material";
 const FeatureProducts = () => {
   const [allProducts, setAllProducts] = React.useState([]);
   React.useEffect(() => {
-    fetch("http://localhost:5000/allProducts")
+    fetch("https://fathomless-depths-15420.herokuapp.com/allProducts")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   }, []);

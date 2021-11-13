@@ -22,7 +22,7 @@ const MyOrders = () => {
   const [myOrder, setMyOrder] = useState([]);
   const [control, setControl] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/myOrders/${email}`)
+    fetch(`https://fathomless-depths-15420.herokuapp.com/myOrders/${email}`)
       .then((res) => res.json())
       .then((data) => setMyOrder(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,9 +39,12 @@ const MyOrders = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/deleteOrder/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://fathomless-depths-15420.herokuapp.com/deleteOrder/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {

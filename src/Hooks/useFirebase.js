@@ -18,7 +18,7 @@ const useFirebase = () => {
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`https://fathomless-depths-15420.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);
@@ -88,7 +88,7 @@ const useFirebase = () => {
   };
 
   const SaveUserInfo = (email) => {
-    fetch("http://localhost:5000/addUserInfo", {
+    fetch("https://fathomless-depths-15420.herokuapp.com/addUserInfo", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ email }),

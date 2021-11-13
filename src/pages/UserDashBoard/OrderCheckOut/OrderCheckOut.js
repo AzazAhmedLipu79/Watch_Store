@@ -21,7 +21,9 @@ const OrderCheckOut = () => {
   const { ProductId } = useParams();
   const [product, setProduct] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/SingleProduct/${ProductId}`)
+    fetch(
+      `https://fathomless-depths-15420.herokuapp.com/SingleProduct/${ProductId}`
+    )
       .then((res) => res.json())
       .then((data) => setProduct(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,7 +39,7 @@ const OrderCheckOut = () => {
     data.OrderDate = new Date().toLocaleDateString();
     data.OrderTime = new Date().toLocaleTimeString();
     data.status = "Pending";
-    fetch("http://localhost:5000/ConfirmOrder", {
+    fetch("https://fathomless-depths-15420.herokuapp.com/ConfirmOrder", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

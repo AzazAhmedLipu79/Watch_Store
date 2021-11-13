@@ -22,13 +22,13 @@ const OrderManage = () => {
   const onSubmit = (data) => setStatus(data);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allOrders")
+    fetch("https://fathomless-depths-15420.herokuapp.com/allOrders")
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [control]);
 
   const handleUpdate = (id) => {
-    fetch(`http://localhost:5000/updateStatus/${id}`, {
+    fetch(`https://fathomless-depths-15420.herokuapp.com/updateStatus/${id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ Status }),
@@ -45,9 +45,12 @@ const OrderManage = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/deleteManageOrder/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://fathomless-depths-15420.herokuapp.com/deleteManageOrder/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {

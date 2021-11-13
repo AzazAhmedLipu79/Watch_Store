@@ -19,7 +19,7 @@ const MakeAdmin = () => {
       dangerMode: true,
     }).then((admin) => {
       if (admin) {
-        fetch("http://localhost:5000/users/admin", {
+        fetch("https://fathomless-depths-15420.herokuapp.com/users/admin", {
           method: "PUT",
           headers: {
             "content-type": "application/json",
